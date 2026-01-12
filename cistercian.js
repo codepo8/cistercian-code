@@ -66,9 +66,7 @@ function Cistercian() {
             if (this.config.addinteraction) {
                 let button = document.createElement('button');
                 button.innerText = '❌';
-                button.addEventListener('click', () => {
-                    canvascontainer.remove();
-                });
+                button.addEventListener('click', () => { canvascontainer.remove();});
                 canvascontainer.appendChild(button);
             }
         }
@@ -84,20 +82,14 @@ function Cistercian() {
             if (this.config.addinteraction) {
                 let button = document.createElement('button');
                 button.innerText = '❌';
-                button.addEventListener('click', () => {
-                    canvascontainer.remove();
-                });
+                button.addEventListener('click', () => { canvascontainer.remove(); });
                 canvascontainer.appendChild(downloadlink);
                 downloadlink.appendChild(canvas);
-                if (this.config.addtext) {
-                    canvascontainer.appendChild(p);
-                }
+                if (this.config.addtext) { canvascontainer.appendChild(p); }
                 canvascontainer.appendChild(button);
             } else {
                 canvascontainer.appendChild(canvas);
-                if (this.config.addtext) {
-                    canvascontainer.appendChild(p);
-                }
+                if (this.config.addtext) { canvascontainer.appendChild(p);}
             }
         }
         this.config.outputcontainer.appendChild(canvascontainer);
