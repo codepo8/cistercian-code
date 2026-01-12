@@ -61,10 +61,7 @@ function Cistercian() {
         let canvascontainer = document.createElement('div');
         let p = document.createElement('p');
         if (this.config.renderer === 'svg') {
-            let svgcontent = `<svg width="${this.config.canvas.width}" height="${this.config.canvas.width * 1.5}" xmlns="http://www.w3.org/2000/svg">`;
-            svgcontent += `</svg>
-            <p></p>
-            <details><summary>Source</summary><textarea></textarea></details>`;
+            let svgcontent = `<svg width="${this.config.canvas.width}" height="${this.config.canvas.width * 1.5}" xmlns="http://www.w3.org/2000/svg"></svg><p></p>`;
             canvascontainer.innerHTML = svgcontent;
             if (this.config.addinteraction) {
                 let button = document.createElement('button');
@@ -144,7 +141,8 @@ function Cistercian() {
                     if (this.config.addtext) {
                         textbox.innerText = number;
                     }
-                    rendercontainer.querySelector('textarea').value = svg.outerHTML;
+                    let url = (`data:image/svg+xml,${encodeURIComponent(svg.outerHTML)}`);
+                    console.log(url);
                 }
 
         }
