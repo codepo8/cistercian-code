@@ -32,7 +32,7 @@
         return `<line x1="${x}" y1="${y}" x2="${x1}" y2="${y1}" 
         stroke="${config.stroke.colour}" stroke-linecap="square" stroke-width="${config.stroke.width}"/>`;
     };
-    const rendernumber = (number) => {
+    const toCistercian = (number) => {
         let svg = `<svg width="${config.canvas.width}" height="${config.canvas.width * 1.5}" xmlns="http://www.w3.org/2000/svg"><title>Cistercian numeral for ${number}</title>`;
         if (number < 0 || number > 9999) return;
         let factor = config.canvas.width / 60;
@@ -64,7 +64,7 @@
     };
 
     // expose API for CommonJS, ESM and browser, plus a tiny CLI
-    const api = { configure, rendernumber };
+    const api = { configure, toCistercian };
 
     if (typeof module !== 'undefined' && module.exports) {
         module.exports = api;

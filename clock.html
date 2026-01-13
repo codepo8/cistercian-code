@@ -14,8 +14,24 @@
             display: inline-flex;
             align-items: center;
             font-size: 2em;
-            gap: 1em;
+            gap: 10px;
             font-weight: bold;
+            border: 2px solid #ccc;
+            background-color: #eee;
+            border-radius: 10px;
+        }
+        footer {
+            font-size: .8em;
+            margin-top: 2em;
+            color: #666;
+        }
+        footer a {
+            color: #69c;
+            text-decoration: none;
+        }
+        svg {
+            width: 100%;
+            height: auto;
         }
     </style>
 </head>
@@ -28,46 +44,27 @@
             <div>:</div>
             <output id="seconds"></output>
         </div>
-    <script src="cistercian.js"></script>
+        <footer>Written by <a href="https://christianheilmann.com">Chris Heilmann</a>, using <a href="https://en.wikipedia.org/wiki/Cistercian_numerals">Cistercian numerals</a> and <a href="">toCistercian.js</a>.</footer>
+    <script src="toCistercian.js"></script>
     <script>
-        const hoursconverter = new Cistercian();
-        hoursconverter.configure({
-            addtext: false,
-            addinteraction: false,
-            outputcontainer: document.querySelector('#hours')
-        });
-        const minutesconverter = new Cistercian();
-        minutesconverter.configure({
-            addtext: false,
-            addinteraction: false,
-            outputcontainer: document.querySelector('#minutes')
-        });
-        const secondsconverter = new Cistercian();
-        secondsconverter.configure({
-            addtext: false,
-            addinteraction: false,
-            outputcontainer: document.querySelector('#seconds')
-        });
+        let hourbox = document.querySelector('#hours');
+        let minutebox = document.querySelector('#minutes');
+        let secondbox = document.querySelector('#seconds');
         function clock() {
             let now = new Date();
             let hours = now.getHours();
             let minutes = now.getMinutes();
             let seconds = now.getSeconds();
-            let hourbox = document.querySelector('#hours');
-            let minutebox = document.querySelector('#minutes');
-            let secondbox = document.querySelector('#seconds');
             document.querySelectorAll('.clockoutput output').forEach(output => {
                 output.innerHTML = '';
             });
-            hoursconverter.rendernumber(hours);
-            minutesconverter.rendernumber(minutes);
-            secondsconverter.rendernumber(seconds);
-            hourbox.title = hours.toString().padStart(2, '0');
-            minutebox.title = minutes.toString().padStart(2, '0');
-            secondbox.title = seconds.toString().padStart(2, '0');
+            hourbox.innerHTML = toCistercian(hours);
+            minutebox.innerHTML = toCistercian(minutes);
+            secondbox.innerHTML = toCistercian(seconds);
             setTimeout(clock, 1000);
         }
         clock();
     </script>
+
 </body>
 </html>

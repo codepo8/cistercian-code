@@ -1,0 +1,25 @@
+{
+    "name": "toCistercian",
+    "version": "0.1.0",
+    "main": "toCistercian.js",
+    "license": "MIT",
+    "type": "module",
+    "description": "This is a package to encode numbers into Cistercian numerals as SVG.",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/codepo8/cisterician-code.git"
+    },
+    "keywords": [
+        "Cistercian",
+        "numerals",
+        "SVG"
+    ],
+    "author": "Chris Heilmann",
+    "bugs": {
+        "url": "https://github.com/codepo8/cisterician-code/issues"
+    },
+    "homepage": "https://github.com/codepo8/cisterician-code#readme"
+}
