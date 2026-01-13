@@ -9,18 +9,14 @@
 <body>
     <h1>Cistercian Numerals Generator</h1>
     <form action="#">
-       <div>
-        <label for="numberinput">Enter a number (1-9999):</label>
+        <label for="numberinput">Number:</label>
         <input type="number" id="numberinput" value="1234" min="1" max="9999">
         <button type="submit">Generate</button>
-       </div>
-       <div class="format">
-              Choose output format:
-           <input type="radio" name="renderer" checked id="canvas" value="canvas">
-           <label for="canvas">Canvas / PNG</label>
-           <input type="radio" name="renderer" id="svg" value="svg">
-           <label for="svg">SVG</label>
-        </div>
+        Format:
+        <input type="radio" name="renderer" checked id="canvas" value="canvas">
+        <label for="canvas">Canvas / PNG</label>
+        <input type="radio" name="renderer" id="svg" value="svg">
+        <label for="svg">SVG</label>
     </form>
     <output></output>
     <section class="info">
@@ -60,5 +56,6 @@
     document.querySelector('#numberinput').value = Math.floor(Math.random() * 9999) + 1;
     document.querySelector('form').dispatchEvent(new Event('change'));
    </script>
+<footer>Written by <a href="https://christianheilmann.com">Chris Heilmann</a>, using <a href="https://en.wikipedia.org/wiki/Cistercian_numerals">Cistercian numerals</a> and <a href="https://github.com/codepo8/cistercian">Cistercian.js</a>.</footer>
 </body>
 </html>

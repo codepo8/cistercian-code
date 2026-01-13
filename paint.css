@@ -2,6 +2,7 @@
         font-family: Avenir, 'Avenir Next LT Pro', Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif;            text-align: center;
         text-align: center;
         margin: 2em;
+        font-size: 1em;
     }
     h1 {
         font-size: 2.5em;
@@ -15,11 +16,17 @@
     }
 
     form {
-        font-size: 1.8em;
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         align-items: center;
         gap: .5em;
+        background: #369;
+        color: #fff;
+        padding: .2em .5em;
+        flex-wrap: wrap;
+        box-shadow: none;
+        border-top-left-radius: .5em;
+        border-top-right-radius: .5em;
     }
 
     input,
@@ -38,7 +45,6 @@
     }
 
     button[type=submit] {
-        background-color: rgb(51, 131, 29);
         color: white;
         border: none;
         font-size: .8em;
@@ -47,22 +53,21 @@
     }
 
     input+label {
-        background-color: #eee;
-        color: #333;
+        box-shadow: inset 2px 2px 6px transparent;
         padding: .2em .5em;
-        margin: 0 .5em;
         display: inline-block
     }
 
     input[type=radio] {
         display: none;
+        background: linear-gradient(to bottom, #258 0%, #147 100%);
     }
 
     input:checked+label {
-        background-color: #369;
-        color: white;
+        box-shadow: inset 2px 2px 6px #000000;
+        background-color: #47A;
+        color: #ccc;
         padding: .2em .5em;
-        margin-right: 1em;
         display: inline-block
     }
 
@@ -136,12 +141,6 @@
         margin-bottom: 1em;
     }
 
-    form {
-        background: #ffffff;
-        padding: 2em;
-        border-radius: 8px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
     .info {
         background: #ffffff;
         padding: 2em;
@@ -150,25 +149,27 @@
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         margin-bottom: 1em;
     }
-
-    input,
+    input[type="number"] {
+        background: #eee;
+        border: none;
+        border-radius: 4px;
+        padding: 0.5em;
+        margin: .4em 0;
+    }
     button[type=submit] {
-        border: 1px solid #ccc;
+        border: none;
         border-radius: 4px;
         padding: 0.5em;
         transition: all 0.3s ease;
     }
 
-    input:focus,
-    button[type=submit]:hover {
-        border-color: #2980b9;
-        outline: none;
-    }
+
 
     button[type=submit] {
-        background-color: #2980b9;
-        color: white;
-        font-weight: bold;
+        background-color: #f0db25;
+        background: linear-gradient(to bottom, #f0db25 0%, #f0c24a 100%);
+        color: black;
+        font-family: inherit;
         padding: 0.7em 1.5em;
     }
 
@@ -212,11 +213,6 @@
             font-size: 1.8em;
         }
 
-        form {
-            padding: 1em;
-            box-shadow: none;
-        }
-
         input,
         button[type=submit] {
             font-size: 0.9em;
@@ -237,3 +233,13 @@
             font-size: 1.2em;
         }
     }
+footer {
+font-size: .8em;
+margin-top: 2em;
+color: #666;
+}
+footer a {
+color: #69c;
+text-decoration: none;
+}
+
