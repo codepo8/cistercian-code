@@ -2,7 +2,11 @@
 
 If all you want to do is convert numbers to [Cistercian numerals](https://en.wikipedia.org/wiki/Cistercian_numerals), check out the [generator page](https://codepo8.github.io/cistercian/) which allows you to convert numbers to SVG or Canvas/PNG. 
 
+![The generator in action](generator.gif)
+
 You can also check out the snazzy [Cistercian Clock](https://codepo8.github.io/cistercian/clock.html) to impress friends and family. 
+
+![A clock using the numerals ](CistercianClock.gif)
 
 If you want to use this in your own products, there are two options:
 
@@ -39,7 +43,7 @@ You can also use this in a browser as shown in the [simple.html](https://codepo8
     document.querySelector('output').innerHTML = svg;
 </script>
 ```
-## cistercian.js - convert to svg/png/canvas with customisation
+## Cistercian.js - convert to svg/png/canvas with customisation
 
 The generator uses the more detailed [cistercian.js](cistercian.js) version, which allows you to generate numerals in various versions and formats.
 
