@@ -29,6 +29,7 @@ function Cistercian() {
     ];
 
     this.glyphs = {
+        0: [[1,13]],
         1: [[1,13],[1,2]], 10: [[1,13],[0,1]], 100: [[1,13],[14,13]], 1000: [[1,13],[12,13]],
         2: [[1,13],[4,5]], 20: [[1,13],[3,4]], 200: [[1,13],[10,11]], 2000: [[1,13],[9,10]],
         3: [[1,13],[1,5]], 30: [[1,13],[1,3]], 300: [[1,13],[13,11]], 3000: [[1,13],[13,9]],
@@ -61,7 +62,7 @@ function Cistercian() {
         let canvascontainer = document.createElement('div');
         let p = document.createElement('p');
         if (this.config.renderer === 'svg') {
-            let svgcontent = `<a href=""><svg width="${this.config.canvas.width}" height="${this.config.canvas.width * 1.5}" xmlns="http://www.w3.org/2000/svg"><title>Cistercian numeral for ${document.querySelector('#numberinput').value}</title></svg></a><p></p>`;
+            let svgcontent = `<a href=""><svg width="${this.config.canvas.width}" height="${this.config.canvas.width * 1.5}" xmlns="http://www.w3.org/2000/svg"></svg></a><p></p>`;
             canvascontainer.innerHTML = svgcontent;
             if (this.config.addinteraction) {
                 let button = document.createElement('button');
@@ -97,28 +98,23 @@ function Cistercian() {
     };
 
     this.rendernumber = function(number) {
-        if (number < 1 || number > 9999) return;
+        if (number < 0 || number > 9999) return;
         this.factor = this.config.canvas.width / 60;
         if (this.config.renderer === 'svg') {
+            let rendercontainer = this.addcanvas();
+            let textbox = rendercontainer.querySelector('p');
+            let svg = rendercontainer.querySelector('svg');
+            svg.innerHTML = `<title>Cistercian numeral for ${number}</title>`;
             if (this.glyphs[number]) {
-                let rendercontainer = this.addcanvas();
-                let textbox = rendercontainer.querySelector('p');
-                let svg = rendercontainer.querySelector('svg');
                 this.glyphs[number].forEach(glyph => {
                     line = this.drawline(
                             this.points[glyph[0]][0] * this.factor, this.points[glyph[0]][1] * this.factor,
-                            this.points[glyph[1]][0] * this.factor, this.points[glyph[1]][1] * this.factor)
-                        svg.innerHTML += line;
-                    });
-                    if (this.config.addtext) {
-                        textbox.innerText = number;
-                    }
-                    rendercontainer.querySelector('textarea').value = svg.outerHTML;
+                            this.points[glyph[1]][0] * this.factor, this.points[glyph[1]][1] * this.factor
+                        )
+                    svg.innerHTML += line;
+                });
             } else {
                 let chunks = number.toString().split('').reverse();
-                let rendercontainer = this.addcanvas();
-                let svg = rendercontainer.querySelector('svg');
-                let textbox = rendercontainer.querySelector('p');
                 chunks.forEach((chunk, index) => {
                     let value = chunk + '0'.repeat(index);
                     if (this.glyphs[value]) {
@@ -130,61 +126,48 @@ function Cistercian() {
                             });
                         }
                     });
-                    if (this.config.addtext) {
-                        textbox.innerText = number;
-                    }
-                    if (this.config.addinteraction) {
-                        downloadlink = rendercontainer.querySelector('a');
-                        downloadlink.href = `data:image/svg+xml,${encodeURIComponent(svg.outerHTML)}`;
-                        downloadlink.download = 'cistercian_' + number + '.svg';
-                    }        
                 }
-
-        }
+            if (this.config.addtext) {
+                textbox.innerText = number;
+            }
+            if (this.config.addinteraction) {
+                downloadlink = rendercontainer.querySelector('a');
+                downloadlink.href = `data:image/svg+xml,${encodeURIComponent(svg.outerHTML)}`;
+                downloadlink.download = 'cistercian_' + number + '.svg';
+            }        
+    }
         if (this.config.renderer === 'canvas') {
+            let rendercontainer = this.addcanvas();
+            let textbox = rendercontainer.querySelector('p');
+            let downloadlink = rendercontainer.querySelector('a');
+            let cx = rendercontainer.querySelector('canvas').getContext('2d');
             if (this.glyphs[number]) {
-                let rendercontainer = this.addcanvas();
-                let cx = rendercontainer.querySelector('canvas').getContext('2d');
-                let textbox = rendercontainer.querySelector('p');
-                let downloadlink = rendercontainer.querySelector('a');
                 this.glyphs[number].forEach(glyph => {
                     this.drawline(
                         this.points[glyph[0]][0] * this.factor, this.points[glyph[0]][1] * this.factor,
                         this.points[glyph[1]][0] * this.factor, this.points[glyph[1]][1] * this.factor 
-                        ,cx)
-                    });
-                    if (this.config.addtext) {
-                        textbox.innerText = number;
-                    }
-                    if (this.config.addinteraction) {
-                        downloadlink.href = rendercontainer.querySelector('canvas').toDataURL();
-                        downloadlink.download = 'cistercian_' + number + '.png';
-                    }        
-                } else {
-                    let chunks = number.toString().split('').reverse();
-                    let rendercontainer = this.addcanvas();
-                    let cx = rendercontainer.querySelector('canvas').getContext('2d');
-                    let textbox = rendercontainer.querySelector('p');
-                    let downloadlink = rendercontainer.querySelector('a');
-                    chunks.forEach((chunk, index) => {
-                        let value = chunk + '0'.repeat(index);
-                        if (this.glyphs[value]) {
-                            this.glyphs[value].forEach(glyph => {
-                                this.drawline(
-                                    this.points[glyph[0]][0] * this.factor, this.points[glyph[0]][1] * this.factor,
-                                    this.points[glyph[1]][0] * this.factor, this.points[glyph[1]][1] * this.factor 
-                                    ,cx)
-                                });
-                            }
-                        });
-                        if (this.config.addtext) {
-                            textbox.innerText = number;
+                    ,cx)
+                });
+             } else {
+                let chunks = number.toString().split('').reverse();
+                chunks.forEach((chunk, index) => {
+                    let value = chunk + '0'.repeat(index);
+                    if (this.glyphs[value]) {
+                        this.glyphs[value].forEach(glyph => {
+                            this.drawline(
+                                this.points[glyph[0]][0] * this.factor, this.points[glyph[0]][1] * this.factor,
+                                this.points[glyph[1]][0] * this.factor, this.points[glyph[1]][1] * this.factor 
+                                ,cx)
+                            });
                         }
-                        if (this.config.addinteraction) {
-                            downloadlink.href = rendercontainer.querySelector('canvas').toDataURL();
-                            downloadlink.download = 'cistercian_' + number + '.png';
-                        }
-                    }
-                };
+                });
             }
-        }
+            if (this.config.addtext) { textbox.innerText = number; }
+            if (this.config.addinteraction) {
+                downloadlink.href = rendercontainer.querySelector('canvas').toDataURL();
+                downloadlink.download = 'cistercian_' + number + '.png';
+            }        
+
+        };
+     }
+}

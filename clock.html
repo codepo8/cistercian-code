@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cistercian Clock</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            text-align: center;
+            margin-top: 2em;
+        }
+        h1{font-weight: normal;}
+        .clockoutput {
+            display: inline-flex;
+            align-items: center;
+            font-size: 2em;
+            gap: 1em;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+        <h1>Cistercian Clock</h1>
+        <div class="clockoutput">
+            <output id="hours"></output>
+            <div>:</div>
+            <output id="minutes"></output>
+            <div>:</div>
+            <output id="seconds"></output>
+        </div>
+    <script src="cistercian.js"></script>
+    <script>
+        const hoursconverter = new Cistercian();
+        hoursconverter.configure({
+            addtext: false,
+            addinteraction: false,
+            outputcontainer: document.querySelector('#hours')
+        });
+        const minutesconverter = new Cistercian();
+        minutesconverter.configure({
+            addtext: false,
+            addinteraction: false,
+            outputcontainer: document.querySelector('#minutes')
+        });
+        const secondsconverter = new Cistercian();
+        secondsconverter.configure({
+            addtext: false,
+            addinteraction: false,
+            outputcontainer: document.querySelector('#seconds')
+        });
+        function clock() {
+            let now = new Date();
+            let hours = now.getHours();
+            let minutes = now.getMinutes();
+            let seconds = now.getSeconds();
+            let hourbox = document.querySelector('#hours');
+            let minutebox = document.querySelector('#minutes');
+            let secondbox = document.querySelector('#seconds');
+            document.querySelectorAll('.clockoutput output').forEach(output => {
+                output.innerHTML = '';
+            });
+            hoursconverter.rendernumber(hours);
+            minutesconverter.rendernumber(minutes);
+            secondsconverter.rendernumber(seconds);
+            hourbox.title = hours.toString().padStart(2, '0');
+            minutebox.title = minutes.toString().padStart(2, '0');
+            secondbox.title = seconds.toString().padStart(2, '0');
+            setTimeout(clock, 1000);
+        }
+        clock();
+    </script>
+</body>
+</html>
