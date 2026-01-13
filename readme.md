@@ -1,8 +1,8 @@
 # Cistercian Numerals generator
 
-If all you want to do is convert numbers to [Cistercian numerals](https://en.wikipedia.org/wiki/Cistercian_numerals), check out the [generator page]() which allows you to convert numbers to SVG or Canvas/PNG. 
+If all you want to do is convert numbers to [Cistercian numerals](https://en.wikipedia.org/wiki/Cistercian_numerals), check out the [generator page](https://codepo8.github.io/cistercian/) which allows you to convert numbers to SVG or Canvas/PNG. 
 
-You can also check out the snazzy [Cistercian Clock]() to impress friends and family. 
+You can also check out the snazzy [Cistercian Clock](https://codepo8.github.io/cistercian/clock.html) to impress friends and family. 
 
 If you want to use this in your own products, there are two options:
 
@@ -28,7 +28,7 @@ For example `node toCistercian,js 161` results in the following SVG:
 </svg>
 ```
 
-You can also use this in a browser as shown in the [simple.html]() example: 
+You can also use this in a browser as shown in the [simple.html](https://codepo8.github.io/cistercian/simple.html) example: 
 
 ```html
 <output></output>
@@ -54,7 +54,7 @@ Usage is in JavaScript and a browser environment.
 ```
 
 This would add an `output` element to the body and render the numeral with a text representation and a button to remove it again.
-You can configure it to change the look and feel and what gets rendered by calling the `configure` method. See the [advanced example]() for that.
+You can configure it to change the look and feel and what gets rendered by calling the `configure` method. See the [advanced example](https://codepo8.github.io/cistercian/advanced.html) for that.
 
 If you want, for example, to render the numeral inside the element with the ID `mycanvas` as SVG with a `width` of `400`, lines 10 pixels thick and in the colour `peachpuff` and without any text display or button to delete, you can do the following:
 
@@ -73,4 +73,5 @@ myConverter.configure({
 });
 myConverter.rendernumber(1312);
 ```
+
 Enjoy! 
